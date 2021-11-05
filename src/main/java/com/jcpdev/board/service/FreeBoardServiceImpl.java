@@ -59,7 +59,7 @@ public class FreeBoardServiceImpl implements FreeboardService{
 		
 	}
 	@Override
-	public int searchCount(Map<String,String> map) {
+	public int searchCount(Map<String,Object> map) {
 		//paging에 검색을 위한 필드와 검색어 속성 포함
 		return dao.searchCount(map);
 	}
@@ -68,6 +68,27 @@ public class FreeBoardServiceImpl implements FreeboardService{
 	public List<Board> searchList(PageDto dto) {
 		//paging에 검색을 위한 필드와 검색어 속성 포함
 		return dao.searchList(dto);
+	}
+	
+	@Override
+	public Map<String, Object> searchList2(Map<String, Object> param){
+		
+		List<Board> list;
+		int totalCount;
+		PageDto pageDto;
+		
+		String findText = (String) param.get("findText");
+		String field = (String) param.get("field");
+		totalCount = searchCount(param);
+		int currentPage = (int) param.get("currentPage");
+		int pageSize = (int) param.get("pageSize");
+		
+		pageDto=new PageDto(currentPage, pageSize, totalCount, field, findText);
+		list = dao.searchList(pageDto);
+		param.put("page", pageDto);
+		param.put("list", list);
+		return param;
+		
 	}
 	
 

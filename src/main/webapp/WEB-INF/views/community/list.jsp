@@ -15,6 +15,7 @@
 <div>
 	<form action="list">
 		<select name="field">
+		<!-- c:if 는 페이지 이동시 선택된 검색항목 유지하기 위해 작성 -->
 			<option value="S" <c:if test="${field=='S'}">selected</c:if>>제목</option>
 			<option value="C" <c:if test="${field=='C'}">selected</c:if>>내용</option>
 			<option value="N" <c:if test="${field=='N'}">selected</c:if>>작성자</option>
