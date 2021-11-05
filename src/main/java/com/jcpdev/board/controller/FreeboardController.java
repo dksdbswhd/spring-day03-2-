@@ -85,8 +85,16 @@ public class FreeboardController {
 	
 	//상세보기 : 미구현
 	@RequestMapping("/detail")     
-	public void detail() {
-	
+	public void detail(int idx, int page,String field, String findText, Model model) {
+		
+		model.addAttribute("bean",service.getBoardOne(idx));
+		model.addAttribute("page",page);
+		model.addAttribute("cmtlist",cmtservice.commentList(idx));
+		model.addAttribute("cr","\n");
+		model.addAttribute("field", field);
+		model.addAttribute("findText", findText);
+		
+		//view는 community/detail
 	}
 	
 	//글쓰기 - view  : insert() 메소드 
@@ -103,12 +111,21 @@ public class FreeboardController {
 		return "redirect:/community/list";
 	}
 	
-	//수정
+	//수정 화면
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public void update(@RequestParam Map<String, String> param,Model model) {		//@RequestParam Map<String, String> param
 		model.addAttribute("bean", service.getBoardOne(Integer.parseInt(param.get("idx"))));
+		model.addAttribute("page", param.get("page"));
 	}
 	
+	//수정 내용저장
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String save2(Board board, int page, Model model) {
+		service.update(board);
+		
+		model.addAttribute("page",page);
+		return "redirect:/community/list";
+	}
 	//삭제 : 미구현
 	
 	@ExceptionHandler(NumberFormatException.class)

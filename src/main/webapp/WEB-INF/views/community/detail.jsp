@@ -92,7 +92,7 @@
  	<tr><td colspan="4" align="center"><br>
  	<a class="button" href="update?func=view&idx=${bean.idx }&page=${page}">수정</a>
  	<a class="button" onclick="javascript:deleteOk(${bean.idx },${page });">삭제</a>
- 	<a class="button" href="list?page=${page }">목록</a><br><br><br>
+ 	<a class="button" href="list?page=${page }&field=${field}&findText=${findText}">목록</a><br><br><br>
  	</td></tr>
  </table>
  <!-- 메인글 출력 끝 -->

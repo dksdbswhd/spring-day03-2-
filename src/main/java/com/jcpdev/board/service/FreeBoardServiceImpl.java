@@ -82,13 +82,13 @@ public class FreeBoardServiceImpl implements FreeboardService{
 		String page=(String) param.get("page");
 		if(page==null || page.trim().length()==0) currentPage = 1;
 		else currentPage = Integer.parseInt(page);
+		param.put("currentPage", currentPage);
+		param.put("pageSize", pageSize);
 		
 		
 		String findText = (String) param.get("findText");
 		String field = (String) param.get("field");
 		totalCount = searchCount(param);
-		currentPage = (int) param.get("currentPage");
-		pageSize = (int) param.get("pageSize");
 		
 		pageDto=new PageDto(currentPage, pageSize, totalCount, field, findText);
 		list = dao.searchList(pageDto);
