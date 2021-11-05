@@ -72,10 +72,16 @@ public class FreeboardController {
 		return "community/list";
 	}  //view 이름은? list.jsp
 	
-	
-	
-	
-	
+	//이 코드는 페이지 리스트 만드는 부분을 서비스로 이동시키는 예제 입니다.- 테스트용으로만 확인.
+	// 나머지 다른 jsp파일들의 목록 링크를 list2로 수정하는 부분은 생략하겠습니다.
+	@RequestMapping(value="/list2")
+	public String list2(@RequestParam Map<String, Object> param,Model model) {
+		//컨트롤러는 요청에 대한 데이터 처리를 서비스로 전달하고 결과를 리턴받으면
+		//모델에 저장해서 view로 전달합니다.
+		param=service.searchList2(param);
+		model.addAllAttributes(param);
+		return "community/list";
+	}
 	
 	//상세보기 : 미구현
 	@RequestMapping("/detail")     

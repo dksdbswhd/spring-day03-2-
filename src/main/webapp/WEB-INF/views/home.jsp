@@ -13,6 +13,7 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 <hr/>
-<a href="community/list">커뮤니티</a>
+<a href="community/list">커뮤니티</a><br>
+<a href="community/list2">커뮤니티(2)-컨트롤러 수정 테스트</a>
 </body>
 </html>
